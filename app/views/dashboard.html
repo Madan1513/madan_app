@@ -1,0 +1,53 @@
+<div id="spinner" ng-show="loading">
+    <img id="spinner-image" src="assets/imgs/ge-monogram-blue.png">
+    <div id="spinner-overlay"></div>
+</div>
+<div class="dashboard">
+    <div>
+        <ul class="[ nav navbar-nav navbar-right] dashboard-nav">
+            <li><a ui-sref="navigation.dashboard.myforecast" ng-class="{ 'active': currentSubState == 'myforecast' }"><i class="fa fa-bar-chart" aria-hidden="true"></i> MY FORECAST</a></li>
+            <li class="disabled">
+                <a href="#" ng-class="{ 'active': currentSubState == 'performance' }"><i class="fa fa-line-chart" aria-hidden="true"></i> PERFORMANCE</a>
+            </li>
+            <li class="disabled">
+                <a href="#" ng-class="{ 'active': currentSubState == 'spend' }"><i class="fa fa-money" aria-hidden="true"></i> SPEND</a>
+            </li>
+        </ul>
+    </div>
+    <div class="sidebar_container">
+        <div class="sidebar collapsed" id="sidebar">
+            <div ng-dropdown-multiselect="" options="outageYearData" selected-model="outageYearModel" translation-texts="outageYearCustomTexts"
+                events="{ onItemSelect: outageSingSelData, onItemDeselect: outageSingSelData, onSelectAll: outageMultiSelData, onDeselectAll: outageMultiDeselData}"
+                extra-settings="{enableSearch: true, displayProp: 'id', idProp: 'id', dynamicTitle: false}"></div>
+            <div class="quater">
+                <label class="heading">Outage Quater</label>
+                <div class="ge-box">
+                    <span ng-repeat="chk in outageQuarterData"><input id="{{chk.id}}" type="checkbox" class="ge-checkbox -color--blue" ng-model="chk.val" ng-change="quaterChange('{{chk.id}}')"><label for="{{chk.id}}" class="ge-checkbox-style">{{chk.id}}</label></span>
+                </div>
+            </div>
+            <div ng-dropdown-multiselect="" options="regionData" selected-model="regionModel" translation-texts="regionCustomTexts" extra-settings="{enableSearch: true, displayProp: 'id', idProp: 'id', dynamicTitle: false}"
+                events="{ onItemSelect: regionSingSelData, onItemDeselect: regionSingSelData, onSelectAll: regionMultiSelData, onDeselectAll: regionMultiDeselData}"></div>
+            <div ng-dropdown-multiselect="" options="subRegionData" selected-model="subRegionModel" translation-texts="subRegionCustomTexts"
+                extra-settings="{enableSearch: true, displayProp: 'id', idProp: 'id', dynamicTitle: false}"
+                events="{ onItemSelect: subRegionSingSelData, onItemDeselect: subRegionSingSelData, onSelectAll: subRegionMultiSelData, onDeselectAll: subRegionMultiDeselData}"></div>
+            <div ng-dropdown-multiselect="" options="platformData" selected-model="platformModel" translation-texts="platformCustomTexts"
+                extra-settings="{enableSearch: true, displayProp: 'id', idProp: 'id', dynamicTitle: false}"
+                events="{ onItemSelect: platformSingSelData, onItemDeselect: platformSingSelData, onSelectAll: platformMultiSelData, onDeselectAll: platformMultiDeselData}"></div>
+            <div ng-dropdown-multiselect="" options="frameSizeData" selected-model="frameSizeModel" translation-texts="frameSizeCustomTexts"
+                extra-settings="{enableSearch: true, displayProp: 'id', idProp: 'id', dynamicTitle: false}"
+                events="{ onItemSelect: frameSizeSingSelData, onItemDeselect: frameSizeSingSelData, onSelectAll: frameSizeMultiSelData, onDeselectAll: frameSizeMultiDeselData}"></div>
+            <div ng-dropdown-multiselect="" options="outagetypeData" selected-model="outagetypeModel" translation-texts="outagetypeCustomTexts"
+                extra-settings="{enableSearch: true, displayProp: 'id', idProp: 'id', dynamicTitle: false}"
+                events="{ onItemSelect: outagetypeSingSelData, onItemDeselect: outagetypeSingSelData, onSelectAll: outagetypeMultiSelData, onDeselectAll: outagetypeMultiDeselData}"></div>
+            <div ng-dropdown-multiselect="" options="customerData" selected-model="customerModel" translation-texts="customerCustomTexts"
+                extra-settings="{enableSearch: true, displayProp: 'id', idProp: 'id', dynamicTitle: false}"
+                events="{ onItemSelect: customerSingSelData, onItemDeselect: customerSingSelData, onSelectAll: customerMultiSelData, onDeselectAll: customerMultiDeselData}"></div>
+        </div>
+        <div class="content">
+            <button onclick="document.getElementsByClassName('sidebar')[0].classList.toggle('collapsed')">
+                FILTER
+            </button>
+        </div>
+    </div>
+    <div ui-view></div>
+</div>

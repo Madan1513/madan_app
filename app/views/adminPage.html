@@ -1,0 +1,185 @@
+<style>
+    .btnStyl {
+        padding: 3px 12px;
+        background-color: #808080;
+        color: #ffffff;
+        font-size: 12px;
+    }
+
+    .set {
+        background-color: #c7c7c7;
+        padding: 7px 0 11px;
+        margin-top: -4px;
+    }
+
+    .search {
+        position: relative;
+        color: #aaa;
+        font-size: 16px;
+    }
+
+    .search input {
+        width: 215px;
+        height: 32px;
+
+        background: #fcfcfc;
+        border: 1px solid #aaa;
+        border-radius: 5px;
+        box-shadow: 0 0 3px #ccc, 0 10px 15px #ebebeb inset;
+    }
+
+    .search input {
+        text-indent: 10px;
+    }
+
+    .search .fa-search {
+        position: absolute;
+        top: 10px;
+        left: 200px;
+    }
+
+    .fa-lg {
+        color: #4c4949;
+        padding: 10px!important;
+    }
+
+    .btnbgclr {
+        background-color: #fe5000;
+        color: #fff;
+    }
+
+    .btnbgclr:hover {
+        color: #fff;
+    }
+    .customMessage{
+        background-color: #dff0d8;
+        padding: 7px;
+    }
+</style>
+<div id="spinner" ng-show="loading">
+    <img id="spinner-image" src="assets/imgs/ge-monogram-blue.png">
+    <div id="spinner-overlay"></div>
+</div>
+<div class="dashboard">
+    <div class="col-md-12" style="background-color:#004080;font-size:14px;color:#ffffff;margin-left: 0px;padding: 10px;margin-top: 13px;margin-bottom: 4px;">
+        <i class="fa fa-users" aria-hidden="true"></i>&nbsp;&nbsp; USER MANAGER: USERS - {{userDetails.length}}
+    </div>
+    <div class="col-md-12 set">
+        <div class="col-md-12">
+            <button class="btn btn-success" data-toggle="modal" ng-click="addUserModal()" data-target="#myModal" style="padding:3px 12px;font-size:12px"><i class="fa fa-plus"></i>&nbsp; ADD NEW</button>
+        </div>
+    </div>
+    <div class="col-md-12 customMessage set" ng-if="showUserMessage">
+        <strong>Message</strong><br/>
+        {{userMessage}}
+    </div>
+    <div class="col-md-12" style="background-color:#ffffff">
+        <div class="col-md-12">&nbsp;</div>
+        <div class="col-md-3 pull-right row">
+            <div class="col-md-2" style="padding-top:2%"><i class="fa fa-download arrow-pointer" ng-click="JSONToCSVConvertor(userDetails, 'User Data', 'true')"></i>&nbsp;</div>
+            <div class="col-md-10 search">
+                <span class="fa fa-search"></span>
+                <input ng-model="searchUser" placeholder="Search">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div style="background-color:#2f3133;font-size:14px;color:#ffffff;margin-left: 0px;padding: 10px;margin-top: 13px;margin-bottom: 4px;">EXISTING USERS</div>
+            <table class="ge-datatable -borders--all" style="box-shadow: #c3c3c3 3px 3px 5px;margin-bottom: 20px;">
+                <thead class="-hover--off">
+                    <tr>
+                        <th>
+                            <span style="cursor:pointer" ng-show="orderssoid" ng-click="scc='ssoID';orderssoid=!orderssoid"><span class="fa fa-long-arrow-up"></span>                            SSO ID</span>
+                            <span style="cursor:pointer" ng-hide="orderssoid" ng-click="scc='-ssoID';orderssoid=!orderssoid"><span class="fa fa-long-arrow-down"></span>                            SSO ID</span>
+                        </th>
+                        <th>First Name</th>
+                        <th>
+                            <span style="cursor:pointer" ng-show="orderlname" ng-click="scc='lastName';orderlname=!orderlname"><span class="fa fa-long-arrow-up"></span>                            Last Name</span>
+                            <span style="cursor:pointer" ng-hide="orderlname" ng-click="scc='-lastName';orderlname=!orderlname"><span class="fa fa-long-arrow-down"></span>                            Last Name</span>
+                        </th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="userD in userDetails | filter:searchUser | orderBy:scc">
+                        <td>{{userD.ssoID}}</td>
+                        <td>{{userD.firstName}}</td>
+                        <td>{{userD.lastName}}</td>
+                        <td>{{userD.emailAddress}}</td>
+                        <td>{{userD.roleName}}</td>
+                        <td>
+                            <img ng-src="{{userD.active == 'NO'? 'assets/imgs/cancel.png' : 'assets/imgs/circle-with-check-symbol.png'}}" />
+                        </td>
+                        <td>
+                            <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" data-toggle="modal" data-target="#myModal" ng-click="editUser(userD)"></i>                            | <i class="fa fa-trash fa-lg" aria-hidden="true" data-toggle="modal" data-target="#myModal1"
+                                ng-click="deleteUser1(userD.ssoID)"></i> | &nbsp; <button class="btn" ng-class="userD.active == 'NO'?'btn-success':'btnbgclr'"
+                                ng-click="updateUserA(userD)" style="padding:3px 12px;font-size:12px;width:80px;">{{userD.active == 'NO'?'Activate':'Deactivate'}}</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">{{flagd?'UPDATE USER':'ADD NEW USER'}}</h3>
+                </div>
+                <div class="modal-body">
+                    <p>( * ) indicates required Field</p>
+                    SSO ID * <input type="text" ng-disabled="flagd" ng-model="val.ssoID" /> <br/> First Name * <input type="text"
+                        ng-model="val.firstName" /> <br/> Last Name * <input type="text" ng-model="val.lastName" /> <br/> Email
+                    * <input type="text" ng-model="val.emailAddress" /> <br/> Role *
+                    <select class="form-control" style="width:96%" ng-model="val.roleName">
+                                <option value="ADMIN">Admin</option>
+                                <option value="GENERAL">General</option>
+                            </select><br/>
+                    <!-- <input id="role1" value="ADMIN" type="radio" ng-model="val.roleName" class="ge-radio-button" name="role">
+                          <label for="role1" class="ge-radio-button-style">Admin</label>
+                          <input id="role2" value="GENERAL" type="radio" ng-model="val.roleName" class="ge-radio-button" name="role">
+                          <label for="role2" class="ge-radio-button-style">General</label> <br/> -->
+                    <!-- Status :
+                          <input id="status1" ng-model="val.active" value="YES" type="radio" class="ge-radio-button" name="status">
+                          <label for="status1" class="ge-radio-button-style">Active</label>
+                          <input id="status2" value="NO" ng-model="val.active" type="radio" class="ge-radio-button" name="status">
+                          <label for="status2" class="ge-radio-button-style">Deactive</label> <br/> -->
+                    <center>
+                        <button ng-hide="flagd" class="btn " style="background-color:#fe5000;color:#fff" data-dismiss="modal" ng-click="addUser(val)">Submit</button>
+                        <button ng-show="flagd" class="btn " style="background-color:#fe5000;color:#fff" data-dismiss="modal" ng-click="updateUser(val)">Update</button>
+                        <button class="btn" style="background-color:#fe5000;color:#fff" ng-click="resetForm()">Reset</button>
+                    </center>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button>Submit</button> -->
+                    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal1" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Delete User</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Are You Sure, You want to delete the USER - {{deleteId}}?</p>
+                    <br/>
+                    <center>
+                        <button class="btn " style="background-color:#fe5000;color:#fff" data-dismiss="modal" ng-click='deleteUser(deleteId)'>Delete</button>
+                        <button class="btn " style="background-color:#fe5000;color:#fff" data-dismiss="modal">Cancel</button>
+                    </center>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

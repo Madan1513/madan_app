@@ -1,0 +1,750 @@
+<!-- Applied Filters-->
+<div class="container">
+    <div class="col-sm-2 col-md-2 apply-filter-left aligntxt">
+        <span class="vertical-devider"></span> APPLIED FILTERS
+    </div>
+    <div class="col-sm-8 col-md-8 apply-filter-center">
+        <div class="col-sm-11 col-md-11 pull-left apply-filter-container">
+            <div id="apply-filters">
+                <!-- Applied Filter for Outage Year -->
+                <span ng-if="appliedFilters.outageYear != ''">Outage Year : &nbsp;
+                <span ng-repeat="years in appliedFilters.outageYear" class="input-tag"><i class="fa fa-times arrow-pointer" aria-hidden="true" ng-click="clearFilter(years, 'outageYear')"></i> {{years}}</span></span>
+                <!-- Applied Filter for Outage Quarter -->
+                <span ng-if="appliedFilters.outageQuarter != ''">Outage Quarter : &nbsp;                    
+                <span ng-repeat="years in appliedFilters.outageQuarter" class="input-tag"><i class="fa fa-times arrow-pointer" aria-hidden="true" ng-click="clearFilter(years, 'outageQuarter')"></i> {{years}}</span></span>
+                <!-- Applied Filter for Outage Region -->
+                <span ng-if="appliedFilters.region != ''">Region : &nbsp;                    
+                <span ng-repeat="years in appliedFilters.region" class="input-tag"><i class="fa fa-times arrow-pointer" aria-hidden="true" ng-click="clearFilter(years, 'region')"></i> {{years}}</span></span>
+                <!-- Applied Filter for Outage Sub Region -->
+                <span ng-if="appliedFilters.subRegion != ''">Sub Region : &nbsp;                    
+                <span ng-repeat="years in appliedFilters.subRegion" class="input-tag"><i class="fa fa-times arrow-pointer" aria-hidden="true" ng-click="clearFilter(years, 'subRegion')"></i> {{years}}</span></span>
+                <!-- Applied Filter for Outage Platform -->
+                <span ng-if="appliedFilters.platform != ''">Platform : &nbsp;                    
+                <span ng-repeat="years in appliedFilters.platform" class="input-tag"><i class="fa fa-times arrow-pointer" aria-hidden="true" ng-click="clearFilter(years, 'platform')"></i> {{years}}</span></span>
+                <!-- Applied Filter for Frame Size -->
+                <span ng-if="appliedFilters.frameSize != ''">Frame Size : &nbsp;                    
+                <span ng-repeat="years in appliedFilters.frameSize" class="input-tag"><i class="fa fa-times arrow-pointer" aria-hidden="true" ng-click="clearFilter(years, 'frameSize')"></i> {{years}}</span></span>
+                <!-- Applied Filter for Outage Type -->
+                <span ng-if="appliedFilters.outagetype != ''">Outage Type : &nbsp;                    
+                <span ng-repeat="years in appliedFilters.outagetype" class="input-tag"><i class="fa fa-times arrow-pointer" aria-hidden="true" ng-click="clearFilter(years, 'outagetype')"></i> {{years}}</span></span>
+                <!-- Applied Filter for Customer -->
+                <span ng-if="appliedFilters.customer != ''">Customer : &nbsp;                    
+                <span ng-repeat="years in appliedFilters.customer" class="input-tag"><i class="fa fa-times arrow-pointer" aria-hidden="true" ng-click="clearFilter(years, 'customer')"></i> {{years}}</span></span>
+            </div>
+        </div>
+        <div class="col-sm-1 col-md-1 padtp6" ng-if="isOverflow">
+            <a class="menu-bar text-black pull-right" data-toggle="collapse" href="#expanded_applied_filter"><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+        </div>
+    </div>
+    <div class="col-sm-2 col-md-2 apply-filter-left aligntxt clear-filter">
+        <span class="vertical-devider part"></span><span class="arrow-pointer" ng-click="clearAllFilters()">CLEAR FILTERS</span>
+    </div>
+    <div class="collapse menu" id="expanded_applied_filter">
+        <a data-toggle="collapse" class="close close-expanded-filter" href="#expanded_applied_filter">&times;</a>
+        <span ng-if="appliedFilters.outageYear != ''"><p>Outage Year : &nbsp;
+        <span ng-repeat="years in appliedFilters.outageYear" class="input-tag"><i class="fa fa-times arrow-pointer" aria-hidden="true" ng-click="clearFilter(years, 'outageYear')"></i> {{years}}</span></p>
+        </span>
+        <!-- Applied Filter for Outage Quarter -->
+        <span ng-if="appliedFilters.outageQuarter != ''"><p>Outage Quarter : &nbsp;                    
+        <span ng-repeat="years in appliedFilters.outageQuarter" class="input-tag"><i class="fa fa-times arrow-pointer" aria-hidden="true" ng-click="clearFilter(years, 'outageQuarter')"></i> {{years}}</span></p>
+        </span>
+        <!-- Applied Filter for Outage Region -->
+        <span ng-if="appliedFilters.region != ''"><p>Region : &nbsp;                    
+        <span ng-repeat="years in appliedFilters.region" class="input-tag"><i class="fa fa-times arrow-pointer" aria-hidden="true" ng-click="clearFilter(years, 'region')"></i> {{years}}</span></p>
+        </span>
+        <!-- Applied Filter for Outage Sub Region -->
+        <span ng-if="appliedFilters.subRegion != ''"><p>Sub Region : &nbsp;                    
+        <span ng-repeat="years in appliedFilters.subRegion" class="input-tag"><i class="fa fa-times arrow-pointer" aria-hidden="true" ng-click="clearFilter(years, 'subRegion')"></i> {{years}}</span></p>
+        </span>
+        <!-- Applied Filter for Outage Platform -->
+        <span ng-if="appliedFilters.platform != ''"><p>Platform : &nbsp;                    
+        <span ng-repeat="years in appliedFilters.platform" class="input-tag"><i class="fa fa-times arrow-pointer" aria-hidden="true" ng-click="clearFilter(years, 'platform')"></i> {{years}}</span></p>
+        </span>
+        <!-- Applied Filter for Frame Size -->
+        <span ng-if="appliedFilters.frameSize != ''"><p>Frame Size : &nbsp;                    
+        <span ng-repeat="years in appliedFilters.frameSize" class="input-tag"><i class="fa fa-times arrow-pointer" aria-hidden="true" ng-click="clearFilter(years, 'frameSize')"></i> {{years}}</span></p>
+        </span>
+        <!-- Applied Filter for Outage Type -->
+        <span ng-if="appliedFilters.outagetype != ''"><p>Outage Type : &nbsp;                    
+        <span ng-repeat="years in appliedFilters.outagetype" class="input-tag"><i class="fa fa-times arrow-pointer" aria-hidden="true" ng-click="clearFilter(years, 'outagetype')"></i> {{years}}</span></p>
+        </span>
+        <!-- Applied Filter for Customer -->
+        <span ng-if="appliedFilters.customer != ''"><p>Customer : &nbsp;                    
+        <span ng-repeat="years in appliedFilters.customer" class="input-tag"><i class="fa fa-times arrow-pointer" aria-hidden="true" ng-click="clearFilter(years, 'customer')"></i> {{years}}</span></p>
+        </span>
+    </div>
+</div>
+<!-- End of Applied Filters section -->
+
+<div class="container">
+    <div class="panel-group accordion-bg" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title" data-toggle="collapse" data-target="#collapse1" aria-expanded="false">
+                    &nbsp;CHARTS<span class="glyphicon glyphicon-plus plus pull-left"></span><span class="glyphicon glyphicon-minus minus pull-left"></span>
+                </h4>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse in" aria-expanded="true" style="background-color:#dcdfe8;">
+                <div class="container-fluid">
+                    <div class="pull-right share-padding">
+                        <a href="mailto:"><button type="button" class="btn btn-default btn-deft"><i class="fa fa-share-alt" aria-hidden="true"></i> SHARE</button></a>
+                        <button type="button" class="btn btn-default btn-deft" ng-click="takeScreenShot('chartsID', 'All Charts')"><i class="fa fa-download" aria-hidden="true"></i> DOWNLOAD</button>
+                    </div>
+                </div>
+                <div id="chartsID">
+                    <div class="row" style="padding-bottom: 15px;">
+                        <div class="col-md-7 nopadright">
+                            <div class="box-show">
+                                <div class="well active-graph">
+                                    <div>Outage Year and Quarter</div>
+                                    <div class="fullscren">
+                                        <i class="fa fa-arrows-alt" aria-hidden="true" data-toggle="modal" data-target="#outage" ng-click="fullScreenChart('drawOutageYearandQuarterChart', 'fullscreenModal', 'outageYearandQuarter', null, 'Outage Year and Quarter')"></i>
+                                    </div>
+                                    <div class="dropdown drop-click">
+                                        <a id="dLabel" role="button" data-toggle="dropdown" class="dot-circle" data-target="#">
+                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                                        </a>
+                                        <ul class="dropdown-menu multi-level drop-position" role="menu" aria-labelledby="dropdownMenu">
+                                            <li><a href="mailto:"><i class="fa fa-share-alt padding-li" aria-hidden="true"></i> SHARE</a></li>
+                                            <li class="dropdown-submenu">
+                                                <a tabindex="-1"><i class="fa fa-download padding-li" aria-hidden="true"></i>  Download</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a ng-click="exportPDFChart('outageYearandQuarterChart', 'Outage year and quarter chart')"><i class="fa fa-file-image-o padding-li" aria-hidden="true"></i>Image</a></li>
+                                                    <li><a ng-click="downloadOutageYearandQuarterChartData()"><i class="fa fa-table padding-li" aria-hidden="true"></i> Data</a></li>
+                                                    <li><a ng-click="downloadOutageYearandQuarterChartData(); exportPDFChart('outageYearandQuarterChart', 'Outage year and quarter chart')"><i class="fa fa-file padding-li" aria-hidden="true"></i> Image and Data</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div id="outageYearandQuarter"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="box-show">
+                                <div class="well active-graph">
+                                    <div> Platform</div>
+                                    <div class="fullscren">
+                                        <i class="fa fa-arrows-alt" aria-hidden="true" data-toggle="modal" data-target="#outage" ng-click="fullScreenChart('drawPlatformChart', 'fullscreenModal','platformChart', null, 'Platform')"></i>
+                                    </div>
+                                    <div class="dropdown drop-click">
+                                        <a id="dLabel" role="button" data-toggle="dropdown" class="dot-circle" data-target="#">
+                                            <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                                        </a>
+                                        <ul class="dropdown-menu multi-level drop-position" role="menu" aria-labelledby="dropdownMenu">
+                                            <li><a href="mailto:"><i class="fa fa-share-alt padding-li" aria-hidden="true"></i> SHARE</a></li>
+                                            <li class="dropdown-submenu">
+                                                <a tabindex="-1"><i class="fa fa-download padding-li" aria-hidden="true"></i>  Download</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a ng-click="exportPDFChart('platformChart', 'Platform chart')"><i class="fa fa-file-image-o padding-li" aria-hidden="true"></i> Image</a></li>
+                                                    <li><a ng-click="JSONToCSVConvertor(platformChartData, 'Platform chart data', 'true')"><i class="fa fa-table padding-li" aria-hidden="true"></i> Data</a></li>
+                                                    <li><a ng-click="exportPDFChart('platformChart', 'Platform chart'); JSONToCSVConvertor(platformChartData, 'Platform chart data', 'true')"><i class="fa fa-file padding-li" aria-hidden="true"></i> Image and Data</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div id="platformChart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-bottom: 15px;">
+                        <div class="col-md-4 nopadright">
+                            <div class="box-show">
+                                <div class="well active-graph">
+                                    <div>Frame Size</div>
+                                    <div class="fullscren">
+                                        <i class="fa fa-arrows-alt" aria-hidden="true" data-toggle="modal" data-target="#outage" ng-click="fullScreenChart('drawFrameSizeChart', 'fullscreenModal','frameSizeChart', null, 'Frame Size')"></i>
+                                    </div>
+                                    <div class="dropdown drop-click">
+                                        <a id="dLabel" role="button" data-toggle="dropdown" class="dot-circle" data-target="#">
+                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                                            </a>
+                                        <ul class="dropdown-menu multi-level drop-position" role="menu" aria-labelledby="dropdownMenu">
+                                            <li><a href="mailto:"><i class="fa fa-share-alt padding-li" aria-hidden="true"></i> SHARE</a></li>
+                                            <li class="dropdown-submenu">
+                                                <a tabindex="-1"><i class="fa fa-download padding-li" aria-hidden="true"></i>  Download</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a ng-click="exportPDFChart('frameSizeChart', 'Frame size chart')"><i class="fa fa-file-image-o padding-li" aria-hidden="true"></i> Image</a></li>
+                                                    <li><a ng-click="JSONToCSVConvertor(frameSizeChartData, 'Frame size chart data', 'true')"><i class="fa fa-table padding-li" aria-hidden="true"></i> Data</a></li>
+                                                    <li><a ng-click="exportPDFChart('frameSizeChart', 'Frame size chart'); JSONToCSVConvertor(frameSizeChartData, 'Frame size chart data', 'true')"><i class="fa fa-file padding-li" aria-hidden="true"></i> Image and Data</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div id="frameSizeChart"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 nopadright">
+                            <div class="box-show">
+                                <div class="well active-graph">
+                                    <div>Outage Type</div>
+                                    <div class="fullscren">
+                                        <i class="fa fa-arrows-alt" aria-hidden="true" data-toggle="modal" data-target="#outage" ng-click="fullScreenChart('drawOutageTypeChart', 'fullscreenModal','outageTypeChart', null, 'Outage Type')"></i>
+                                    </div>
+                                    <div class="dropdown drop-click">
+                                        <a id="dLabel" role="button" data-toggle="dropdown" class="dot-circle" data-target="#">
+                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                                                
+                                    </a>
+                                        <ul class="dropdown-menu multi-level drop-position" role="menu" aria-labelledby="dropdownMenu">
+                                            <li><a href="mailto:"><i class="fa fa-share-alt padding-li" aria-hidden="true"></i> SHARE</a></li>
+                                            <li class="dropdown-submenu">
+                                                <a tabindex="-1"><i class="fa fa-download padding-li" aria-hidden="true"></i>  Download</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a ng-click="exportPDFChart('outageTypeChart', 'Outage type chart')"><i class="fa fa-file-image-o padding-li" aria-hidden="true"></i> Image</a></li>
+                                                    <li><a ng-click="JSONToCSVConvertor(outageTypeChartData, 'Outage type chart data', 'true')"><i class="fa fa-table padding-li" aria-hidden="true"></i> Data</a></li>
+                                                    <li><a ng-click="exportPDFChart('outageTypeChart', 'Outage type chart'); JSONToCSVConvertor(outageTypeChartData, 'Outage type chart data', 'true')"><i class="fa fa-file padding-li" aria-hidden="true"></i> Image and Data</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div id="outageTypeChart"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div style="background-color:#ffffff;">
+                                <div class="box-show">
+                                    <div class="well active-graph">
+                                        <div>Customer</div>
+                                        <div class="fullscren">
+                                            <i class="fa fa-arrows-alt" aria-hidden="true" data-toggle="modal" data-target="#customerId"></i>
+                                        </div>
+                                        <div class="dropdown drop-click">
+                                            <a id="dLabel" role="button" data-toggle="dropdown" class="dot-circle" data-target="#">
+                                                    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>                                                    
+                                        </a>
+                                            <ul class="dropdown-menu multi-level drop-position" role="menu" aria-labelledby="dropdownMenu">
+                                                <li><a href="mailto:"><i class="fa fa-share-alt padding-li" aria-hidden="true"></i> SHARE</a></li>
+                                                <li class="dropdown-submenu">
+                                                    <a tabindex="-1"><i class="fa fa-download padding-li" aria-hidden="true"></i>  Download</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a ng-click="takeScreenShot('customerChart', 'Customer Chart')"><i class="fa fa-file-image-o padding-li" aria-hidden="true"></i> Image</a></li>
+                                                        <li><a ng-click="JSONToCSVConvertor(customerChartData, 'Customer chart data', 'true')"><i class="fa fa-table padding-li" aria-hidden="true"></i> Data</a></li>
+                                                        <li><a ng-click="takeScreenShot('customerChart', 'Customer Chart'); JSONToCSVConvertor(customerChartData, 'Customer chart data', 'true')"><i class="fa fa-file padding-li" aria-hidden="true"></i> Image and Data</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="filter">
+                                        <input type="text" ng-model="searchCustomerQuery" placeholder="Search Customer">
+                                    </div>
+                                    <div id="customerChart">
+                                        <table style="width:100%">
+                                            <tr ng-repeat="customer in customerChartData | filter:searchCustomerQuery | orderBy: 'name'">
+                                                <td ng-click="chartClicked('customer', customer.name, 'customerModel', 'customerData')">{{customer.name}}</td>
+                                                <td class="count">{{customer.count}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 nopadright">
+                            <div class="box-show">
+                                <div class="well active-graph">
+                                    <div>Region</div>
+                                    <div class="fullscren">
+                                        <i class="fa fa-arrows-alt" aria-hidden="true" data-toggle="modal" data-target="#outage" ng-click="fullScreenChart('drawRegionChart', 'fullscreenModal','regionChart', null, 'Region')"></i>
+                                    </div>
+                                    <div class="dropdown drop-click">
+                                        <a id="dLabel" role="button" data-toggle="dropdown" class="dot-circle" data-target="#">
+                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                                    </a>
+                                        <ul class="dropdown-menu multi-level drop-position" role="menu" aria-labelledby="dropdownMenu">
+
+                                            <li><a href="mailto:"><i class="fa fa-share-alt padding-li" aria-hidden="true"></i> SHARE</a></li>
+                                            <li class="dropdown-submenu">
+                                                <a tabindex="-1"><i class="fa fa-download padding-li" aria-hidden="true"></i>  Download</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a ng-click="exportPDFChart('regionChart', 'Region chart')"><i class="fa fa-file-image-o padding-li" aria-hidden="true"></i> Image</a></li>
+                                                    <li><a ng-click="JSONToCSVConvertor(regionChartData, 'Region chart data', 'true')"><i class="fa fa-table padding-li" aria-hidden="true"></i> Data</a></li>
+                                                    <li><a ng-click="exportPDFChart('regionChart', 'Region chart'); JSONToCSVConvertor(regionChartData, 'Region chart data', 'true')"><i class="fa fa-file padding-li" aria-hidden="true"></i> Image and Data</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div id="regionChart"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="box-show">
+                                <div class="well active-graph">
+                                    <div>Sub Region</div>
+                                    <div class="fullscren">
+                                        <i class="fa fa-arrows-alt" aria-hidden="true" data-toggle="modal" data-target="#outage" ng-click="fullScreenChart('drawSubRegionChart', 'fullscreenModal','subRegionChart', null, 'Sub Region')"></i>
+                                    </div>
+                                    <div class="dropdown drop-click">
+                                        <a id="dLabel" role="button" data-toggle="dropdown" class="dot-circle" data-target="#">
+                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                                    </a>
+                                        <ul class="dropdown-menu multi-level drop-position" role="menu" aria-labelledby="dropdownMenu">
+                                            <li><a href="mailto:"><i class="fa fa-share-alt padding-li" aria-hidden="true"></i> SHARE</a></li>
+                                            <li class="dropdown-submenu">
+                                                <a tabindex="-1"><i class="fa fa-download padding-li" aria-hidden="true"></i>  Download</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a ng-click="exportPDFChart('subRegionChart', 'Sub region chart')"><i class="fa fa-file-image-o padding-li" aria-hidden="true"></i> Image</a></li>
+                                                    <li><a ng-click="JSONToCSVConvertor(subRegionChartData, 'Sub region chart data', 'true')"><i class="fa fa-table padding-li" aria-hidden="true"></i> Data</a></li>
+                                                    <li><a ng-click="exportPDFChart('subRegionChart', 'Sub region chart'); JSONToCSVConvertor(subRegionChartData, 'Sub region chart data', 'true')"><i class="fa fa-file padding-li" aria-hidden="true"></i> Image and Data</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div id="subRegionChart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading collapsed" ng-click="expand()">
+                <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#collapse2" aria-expanded="false">
+                    &nbsp;MAP<span class="glyphicon glyphicon-plus plus pull-left"></span><span class="glyphicon glyphicon-minus minus pull-left"></span>
+                </h4>
+            </div>
+            <div id="collapse2" class="panel-collapse collapse" aria-expanded="false">
+                <div class="pull-right share-padding">
+                    <a href="mailto:"><button type="button" class="btn btn-default btn-deft"><i class="fa fa-share-alt" aria-hidden="true"></i> SHARE</button></a>
+                    <button type="button" class="btn btn-default btn-deft" ng-click="JSONToCSVConvertor(outages, 'Map Data', 'true')"><i class="fa fa-download" aria-hidden="true"></i> DOWNLOAD</button>
+                </div>
+                <div style="background-color:#dcdfe8; padding: 2px 17px 52px 39px;">
+                    <!-- <span style="padding: 6px; line-height: 34px; background-color: #005eb8; color: #ffffff; cursor:pointer;"
+                        ng-click="showVolumeSaving = true">Volume and Savings</span> -->
+                    <!-- <div class="volumeSavings" ng-show="showVolumeSaving">
+                        <button id="close" ng-click="showVolumeSaving = false">X</button>
+                        <div ng-repeat="data in savingVolume">
+                            <b>{{data.region}}</b>
+                            <br>
+                            <span>Savings: {{data.savings | currency}}</span>
+                            <br>
+                            <span>Volume: {{data.volume | currency}}</span>
+                            <br>
+                        </div>
+                    </div> -->
+                </div>
+                <div>
+                    <nav>
+                        <div class="navbar-header navhead">
+                            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse js-navbar-collapse">
+                            <ul class="pull-right hambug hambug-pos">
+                                <!-- <li class="dropdown mega-dropdown" style="margin-top:85px;">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-map-marker fa-lg" aria-hidden="true"></i></a>
+                                    <ul class="dropdown-menu mega-dropdown-menu megadrop mega-drop-slide-ven">
+                                        <li class="col-md-12">
+                                            <form>
+                                                <div class="checkbox">
+                                                    <label>
+                                                               <input type="checkbox" name="" value="">
+                                                               <i class="helper"></i><span class="check-color"> OUTAGES</span>
+                                                            </label>
+                                                </div>
+                                                <div class="checkbox">
+                                                    <label>
+                                                               <input type="checkbox" name="" value="">
+                                                               <i class="helper"></i><span class="check-color"> APPROVED VENDERS</span>
+                                                            </label>
+                                                </div>
+                                                <div class="checkbox">
+                                                    <label>
+                                                               <input type="checkbox" name="" value="">
+                                                               <i class="helper"></i><span class="check-color"> QUALIFIED VENDORS</span>
+                                                            </label>
+                                                </div>
+                                                <div class="checkbox">
+                                                    <label>
+                                                               <input type="checkbox" name="" value="">
+                                                               <i class="helper"></i><span class="check-color">PRFERRED VENDERS</span>
+                                                            </label>
+                                                </div>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown mega-dropdown ">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa fa-globe fa-lg" aria-hidden="true"></i></a>
+                                    <ul class="dropdown-menu mega-dropdown-menu megadrop mega-drop-slide">
+                                    </ul>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <div id="map" class="map"></div>
+            </div>
+        </div>
+        <div class="panel panel-default accordion-bg">
+            <div class="panel-heading">
+                <h4 class="panel-title collapsed" data-toggle="collapse" data-target="#collapse3" aria-expanded="false">
+                    &nbsp;TABULAR DATA<span class="glyphicon glyphicon-plus plus pull-left"></span><span class="glyphicon glyphicon-minus minus pull-left"></span>
+                </h4>
+            </div>
+            <div id="collapse3" class="panel-collapse collapse collap-margin" aria-expanded="false">
+                <div>
+                    <div class="container margin-conten bg-color">
+                        <form>
+                            <div class="form-group form-group-custom">
+                                <div class="pull-right share-padding">
+                                    <a href="mailto:"><button type="button" class="btn btn-default btn-deft"><i class="fa fa-share-alt" aria-hidden="true"></i> SHARE</button></a>
+                                    <button type="button" class="btn btn-default btn-deft" ng-click="JSONToCSVConvertor(tabularData, 'Outages Data', 'true')"><i class="fa fa-download" aria-hidden="true"></i> DOWNLOAD</button>
+                                    <button type="button" class="btn btn-default btn-deft" data-toggle="modal" data-target="#myModal"><i class="fa fa-arrows-alt" aria-hidden="true" ></i> FULL SCREEN</button>
+                                </div>
+                                <div class="pull-right input-custom">
+                                    <div class="input-group search-width" style="padding-bottom: 3px; padding-top: 10px;">
+                                        <input type="text" class="form-control inputtxt" placeholder="Search " ng-model="q" ng-change="resetCurrentPage()" style="z-index:0;">
+                                        <div class="search-icon"><i class="fa fa-search"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <table class="table table-bordered table-hover tabularView table-color" style="font-size: 12px;" align="center">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        <a style="color:black;" ng-click="sortType = 'pgsOutageId'; sortReverse = !sortReverse">                                        
+                                              <span ng-show="sortType == 'pgsOutageId' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                              <span ng-show="sortType == 'pgsOutageId' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                              Outage ID
+                                            </a>
+                                    </td>
+                                    <td>
+                                        <a style="color:black;" ng-click="sortType = 'region'; sortReverse = !sortReverse">                                        
+                                              <span ng-show="sortType == 'region' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                              <span ng-show="sortType == 'region' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                              Region
+                                            </a>
+                                    </td>
+                                    <td>
+                                        <a style="color:black;" ng-click="sortType = 'subRegion'; sortReverse = !sortReverse">                                        
+                                              <span ng-show="sortType == 'subRegion' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                              <span ng-show="sortType == 'subRegion' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                              Sub Region
+                                            </a>
+                                    </td>
+                                    <td>
+                                        <a style="color:black;" ng-click="sortType = 'country'; sortReverse = !sortReverse">                                            
+                                                <span ng-show="sortType == 'country' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                                <span ng-show="sortType == 'country' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                                Country
+                                            </a>
+                                    </td>
+                                    <td>
+                                        <a style="color:black;" ng-click="sortType = 'platform'; sortReverse = !sortReverse">                                        
+                                              <span ng-show="sortType == 'platform' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                              <span ng-show="sortType == 'platform' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                              Platform
+                                            </a>
+                                    </td>
+                                    <td>
+                                        <a style="color:black;" ng-click="sortType = 'customer'; sortReverse = !sortReverse">                                        
+                                              <span ng-show="sortType == 'customer' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                              <span ng-show="sortType == 'customer' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                              Customer
+                                            </a>
+                                    </td>
+                                    <td>
+                                        <a style="color:black;" ng-click="sortType = 'customerSite'; sortReverse = !sortReverse">                                        
+                                              <span ng-show="sortType == 'customerSite' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                              <span ng-show="sortType == 'customerSite' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                              Customer Site
+                                            </a>
+                                    </td>
+                                    <td>
+                                        <a style="color:black;" ng-click="sortType = 'contractType'; sortReverse = !sortReverse">                                            
+                                                <span ng-show="sortType == 'contractType' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                                <span ng-show="sortType == 'contractType' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                                Contract Type
+                                            </a>
+                                    </td>
+                                    <td>
+                                        <a style="color:black;" ng-click="sortType = 'outageType'; sortReverse = !sortReverse">                                        
+                                              <span ng-show="sortType == 'outageType' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                              <span ng-show="sortType == 'outageType' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                              Outage Type
+                                            </a>
+                                    </td>
+                                    <td>
+                                        <a style="color:black;" ng-click="sortType = 'outageYear'; sortReverse = !sortReverse">                                        
+                                              <span ng-show="sortType == 'outageYear' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                              <span ng-show="sortType == 'outageYear' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                              Outage Year
+                                            </a>
+                                    </td>
+                                    <td>
+                                        <a style="color:black;" ng-click="sortType = 'quarter'; sortReverse = !sortReverse">                                        
+                                              <span ng-show="sortType == 'quarter' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                              <span ng-show="sortType == 'quarter' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                              Quarter
+                                            </a>
+                                    </td>
+                                    <!-- <td>
+                                        <a style="color:black;" ng-click="sortType = 'volume'; sortReverse = !sortReverse">                                            
+                                                <span ng-show="sortType == 'volume' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                                <span ng-show="sortType == 'volume' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                                Volume
+                                            </a>
+                                    </td>
+                                    <td>
+                                        <a style="color:black;" ng-click="sortType = 'savings'; sortReverse = !sortReverse">                                            
+                                                <span ng-show="sortType == 'savings' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                                <span ng-show="sortType == 'savings' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                                Savings
+                                            </a>
+                                    </td> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in tabularData | orderBy:sortType:sortReverse | filter:q | startFrom:currentPage*pageSize | limitTo:pageSize">
+                                    <td>{{ item.pgsOutageId }}</td>
+                                    <td>{{ item.region }}</td>
+                                    <td>{{ item.subRegion }}</td>
+                                    <td>{{ item.country }}</td>
+                                    <td>{{ item.platform }}</td>
+                                    <td>{{ item.customer }}</td>
+                                    <td>{{ item.customerSite }}</td>
+                                    <td>{{ item.contractType }}</td>
+                                    <td>{{ item.outageType }}</td>
+                                    <td>{{ item.outageYear }}</td>
+                                    <td>{{ item.quarter }}</td>
+                                    <!-- <td>{{ item.volume | currency }}</td>
+                                    <td>{{ item.savings | currency }}</td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="paginationControls">
+                            Rows per page &nbsp;&nbsp;
+                            <select ng-model="pageSize" id="pageSize">
+                                    <option>5</option>
+                                    <option selected>10</option>
+                                    <option>15</option>
+                                </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{currentPage+1}}
+                            of {{numberOfPages()}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1" style="cursor: pointer; font-weight:bold" class="fa fa-angle-left">
+                                </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1" style="cursor: pointer; font-weight:bold"
+                                class="fa fa-angle-right">
+                                </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- tabular data modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog dilog-custom">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <form>
+                    <div class="form-group form-group-custom ">
+                        <div class="pull-right input-custom">
+                            <div class="input-group search-width">
+                                <input type="text" class="form-control inputtxt" placeholder="Search" ng-model="q" ng-change="resetCurrentPage()" style="z-index:0;">
+                                <div class="search-icon"><i class="fa fa-search"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <h4 class="modal-title line-hgt"><b>Outages Details Table</b></h4>
+            </div>
+            <table class="table table-bordered table-hover tabularView table-color" style="font-size: 12px;" align="center">
+
+                <thead>
+                    <tr>
+                        <td>
+                            <a style="color:black;" ng-click="sortType = 'pgsOutageId'; sortReverse = !sortReverse">                                        
+                                                                                      <span ng-show="sortType == 'pgsOutageId' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                                                                      <span ng-show="sortType == 'pgsOutageId' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                                                                      Outage ID
+                                                                                    </a>
+                        </td>
+                        <td>
+                            <a style="color:black;" ng-click="sortType = 'region'; sortReverse = !sortReverse">                                        
+                                                                                      <span ng-show="sortType == 'region' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                                                                      <span ng-show="sortType == 'region' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                                                                      Region
+                                                                                    </a>
+                        </td>
+                        <td>
+                            <a style="color:black;" ng-click="sortType = 'subRegion'; sortReverse = !sortReverse">                                        
+                                                                                      <span ng-show="sortType == 'subRegion' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                                                                      <span ng-show="sortType == 'subRegion' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                                                                      Sub Region
+                                                                                    </a>
+                        </td>
+                        <td>
+                            <a style="color:black;" ng-click="sortType = 'country'; sortReverse = !sortReverse">                                            
+                                                                                        <span ng-show="sortType == 'country' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                                                                        <span ng-show="sortType == 'country' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                                                                        Country
+                                                                                    </a>
+                        </td>
+                        <td>
+                            <a style="color:black;" ng-click="sortType = 'platform'; sortReverse = !sortReverse">                                        
+                                                                                      <span ng-show="sortType == 'platform' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                                                                      <span ng-show="sortType == 'platform' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                                                                      Platform
+                                                                                    </a>
+                        </td>
+                        <td>
+                            <a style="color:black;" ng-click="sortType = 'customer'; sortReverse = !sortReverse">                                        
+                                                                                      <span ng-show="sortType == 'customer' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                                                                      <span ng-show="sortType == 'customer' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                                                                      Customer
+                                                                                    </a>
+                        </td>
+                        <td>
+                            <a style="color:black;" ng-click="sortType = 'customerSite'; sortReverse = !sortReverse">                                        
+                                                                                      <span ng-show="sortType == 'customerSite' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                                                                      <span ng-show="sortType == 'customerSite' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                                                                      Customer Site
+                                                                                    </a>
+                        </td>
+                        <td>
+                            <a style="color:black;" ng-click="sortType = 'contractType'; sortReverse = !sortReverse">                                            
+                                                                                        <span ng-show="sortType == 'contractType' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                                                                        <span ng-show="sortType == 'contractType' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                                                                        Contract Type
+                                                                                    </a>
+                        </td>
+                        <td>
+                            <a style="color:black;" ng-click="sortType = 'outageType'; sortReverse = !sortReverse">                                        
+                                                                                      <span ng-show="sortType == 'outageType' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                                                                      <span ng-show="sortType == 'outageType' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                                                                      Outage Type
+                                                                                    </a>
+                        </td>
+                        <td>
+                            <a style="color:black;" ng-click="sortType = 'outageYear'; sortReverse = !sortReverse">                                        
+                                                                                      <span ng-show="sortType == 'outageYear' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                                                                      <span ng-show="sortType == 'outageYear' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                                                                      Outage Year
+                                                                                    </a>
+                        </td>
+                        <td>
+                            <a style="color:black;" ng-click="sortType = 'quarter'; sortReverse = !sortReverse">                                        
+                                                                                      <span ng-show="sortType == 'quarter' && !sortReverse" class="fa fa-long-arrow-down"></span>
+                                                                                      <span ng-show="sortType == 'quarter' && sortReverse" class="fa fa-long-arrow-up"></span>
+                                                                                      Quarter
+                                                                                    </a>
+                        </td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="item in tabularData | orderBy:sortType:sortReverse | filter:q | startFrom:currentPage*pageSize | limitTo:pageSize">
+                        <td>{{ item.pgsOutageId }}</td>
+                        <td>{{ item.region }}</td>
+                        <td>{{ item.subRegion }}</td>
+                        <td>{{ item.country }}</td>
+                        <td>{{ item.platform }}</td>
+                        <td>{{ item.customer }}</td>
+                        <td>{{ item.customerSite }}</td>
+                        <td>{{ item.contractType }}</td>
+                        <td>{{ item.outageType }}</td>
+                        <td>{{ item.outageYear }}</td>
+                        <td>{{ item.quarter }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="paginationControls">
+                Rows per page &nbsp;&nbsp;
+                <select ng-model="pageSize" id="pageSize">
+                    <option>5</option>
+                    <option ng-selected="pageSize==10">10</option>
+                    <option>15</option>
+                </select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{currentPage+1}} of {{numberOfPages()}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1" style="cursor: pointer; font-weight:bold" class="fa fa-angle-left"></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1" style="cursor: pointer; font-weight:bold"
+                    class="fa fa-angle-right"></button>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+<!-- chart modal -->
+<div class="modal fade" id="outage" role="dialog">
+    <div class="modal-dialog dilog-custom no-bottom-margin">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="closeFullScreenChart" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title line-hgt"><b>{{chartTitle}}</b></h4>
+                <div id="fullscreenModal" class="fullscreenChart"></div>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+<!-- customer Modal-->
+<div class="modal fade" id="customerId" role="dialog">
+    <div class="modal-dialog dilog-custom no-bottom-margin">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title line-hgt"><b>Customer</b></h4>
+            </div>
+            <div class="filter">
+                <input type="text" ng-model="searchCustomerQuery" placeholder="Search Customer">
+            </div>
+            <div id="customerChart" style="height:550px;">
+                <table style="width:100%">
+                    <tr ng-repeat="customer in customerChartData | filter:searchCustomerQuery">
+                        <td>{{customer.name}}</td>
+                        <td class="count">{{customer.count}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+<!-- BOM details modal -->
+<div class="modal fade" id="BomData" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">BOM Details</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered table-hover tabularView table-color" style="font-size: 12px;" align="center">
+                    <thead>
+                        <tr>
+                            <th>Item Description</th>
+                            <th>Quantity</th>
+                            <th>Budgeted price(in USD)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="details in bomData">
+                            <td>{{details.bom_item_description}}</td>
+                            <td>{{details.bom_qty}}</td>
+                            <td>{{details.bom_budgeted_price_usd | currency}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
